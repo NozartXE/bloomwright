@@ -48,7 +48,7 @@ export function createFlowSim(level) {
     t.kind = 'S'; t.rot = ((Math.trunc(rot) % 4) + 4) % 4; t.crusted = false; t.patched = false; wet.add(i); return true;
   }
   function step() {
-    if (won || stalled) return [];
+    if (won) return [];
     const events = [], targets = new Set();
     for (const from of wet) {
       const source = tiles[from];
@@ -75,7 +75,8 @@ export function createFlowSim(level) {
     }
     stepsUsed++;
     won = bloomed.length === gardenId;
-    if (targets.size === 0 && !won) { stalled = true; events.push({ type: 'stall', step: stepsUsed }); }
+    stalled = targets.size === 0 && !won;
+    if (stalled) events.push({ type: 'stall', step: stepsUsed });
     return events;
   }
   return { setRotation, applyClay, crust, crack, addSpring, step, wet, bloomed, bloomOrder: bloomed, tileAt, get clayLeft() { return clayLeft; }, get stepsUsed() { return stepsUsed; }, get won() { return won; }, get stalled() { return stalled; }, sun: level.sun ?? 0 };
