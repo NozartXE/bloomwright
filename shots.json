@@ -1,0 +1,6 @@
+[
+  {"name":"1-start.jpg","query":"?shot=start&seed=7"},
+  {"name":"2-play.jpg","query":"?shot=play&level=7&seed=7"},
+  {"name":"3-finale.jpg","query":"?shot=finale&level=12&seed=7"},
+  {"name":"4-won.jpg","query":"?shot=won&seed=7"}
+]
